@@ -1,4 +1,3 @@
-const {resolve} = require('path');
 const path = require('path');
 const webpack = require('webpack');
 const DefinePlugin = webpack.DefinePlugin;
@@ -7,14 +6,14 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    context: resolve(__dirname, 'resources/ut-header/src'),
+    context: path.resolve(__dirname, 'resources/ut-header/src'),
     entry: [
         './index.js'
         // the entry point of our app
     ],
     output: {
         filename: 'header-scripts.js',
-        path: resolve(__dirname, 'resources/ut-header/dist')
+        path: path.resolve(__dirname, 'resources/ut-header/dist')
     },
     devtool: false,
     module: {
@@ -50,6 +49,15 @@ module.exports = {
                 use: [
                     {
                         loader: "html-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.(svg|png|gif|jpg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                include: path.resolve(__dirname, 'resources/ut-header/src/media'),
+                use: [
+                    {
+                        loader: 'file-loader'
                     }
                 ]
             }

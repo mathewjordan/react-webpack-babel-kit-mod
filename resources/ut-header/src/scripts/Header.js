@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
+import successKid from '../media/success-kid.png';
+
 class Header extends React.Component {
 
     constructor() {
@@ -10,6 +12,7 @@ class Header extends React.Component {
     render() {
         return (
             <div>
+                <img src={successKid} />
                 Lets see
             </div>
         )
