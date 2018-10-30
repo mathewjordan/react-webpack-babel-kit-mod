@@ -61,5 +61,6 @@ typings/
 .idea/
 
 #custom
-resources/ut-header/dist/
+resources/ut-header/dist
+resources/ut-header/dist/*
 
