@@ -13,7 +13,8 @@ module.exports = {
     ],
     output: {
         filename: 'header-scripts.js',
-        path: path.resolve(__dirname, 'resources/ut-header/dist')
+        path: path.resolve(__dirname, 'resources/ut-header/dist'),
+        publicPath: 'resources/ut-header/dist/'
     },
     devtool: false,
     module: {
