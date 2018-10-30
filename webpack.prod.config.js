@@ -1,8 +1,10 @@
 const {resolve} = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const DefinePlugin = webpack.DefinePlugin;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     context: resolve(__dirname, 'resources/ut-header/src'),
@@ -43,6 +45,14 @@ module.exports = {
                 test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
                 use: 'url-loader'
             },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            }
         ]
     },
     plugins: [
@@ -51,9 +61,16 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
+
         new UglifyJsPlugin({
             sourceMap: false
         }),
-        new ExtractTextPlugin({filename: 'styles.css', allChunks: true})
+
+        new ExtractTextPlugin({filename: 'styles.css', allChunks: true}),
+
+        new HtmlWebPackPlugin({
+            template: path.join(__dirname, "./resources/ut-header/src/index.html"),
+            filename: "./index.html"
+        })
     ],
 };

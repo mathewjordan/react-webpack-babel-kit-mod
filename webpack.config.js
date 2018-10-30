@@ -1,6 +1,8 @@
 const {resolve} = require('path');
+const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     context: resolve(__dirname, 'resources/ut-header/src'),
@@ -39,12 +41,25 @@ module.exports = {
                 test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/,
                 use: 'url-loader'
             },
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            }
         ]
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
         // prints more readable module names in the browser console on HMR updates
 
-        new ExtractTextPlugin({filename: 'styles.css', allChunks: true})
+        new ExtractTextPlugin({filename: 'styles.css', allChunks: true}),
+
+        new HtmlWebPackPlugin({
+            template: path.join(__dirname, "./resources/ut-header/src/index.html"),
+            filename: "./index.html"
+        })
     ],
 };
