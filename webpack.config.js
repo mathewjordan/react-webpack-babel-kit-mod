@@ -11,7 +11,7 @@ module.exports = {
         // the entry point of our app
     ],
     output: {
-        filename: 'header.js',
+        filename: 'header-scripts.js',
     },
     devtool: 'source-map',
     module: {
@@ -55,7 +55,7 @@ module.exports = {
         new webpack.NamedModulesPlugin(),
         // prints more readable module names in the browser console on HMR updates
 
-        new ExtractTextPlugin({filename: 'styles.css', allChunks: true}),
+        new ExtractTextPlugin({filename: 'header-styles.css', allChunks: true}),
 
         new HtmlWebPackPlugin({
             template: path.join(__dirname, "./resources/ut-header/src/index.html"),

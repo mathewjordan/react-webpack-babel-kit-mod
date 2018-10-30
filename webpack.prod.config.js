@@ -13,8 +13,8 @@ module.exports = {
         // the entry point of our app
     ],
     output: {
-        filename: 'header.js',
-        path: resolve(__dirname, 'dist')
+        filename: 'header-scripts.js',
+        path: resolve(__dirname, 'resources/ut-header/dist')
     },
     devtool: false,
     module: {
@@ -66,7 +66,7 @@ module.exports = {
             sourceMap: false
         }),
 
-        new ExtractTextPlugin({filename: 'styles.css', allChunks: true}),
+        new ExtractTextPlugin({filename: 'header-styles.css', allChunks: true}),
 
         new HtmlWebPackPlugin({
             template: path.join(__dirname, "./resources/ut-header/src/index.html"),
