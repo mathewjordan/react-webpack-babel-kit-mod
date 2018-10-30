@@ -3,13 +3,13 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    context: resolve(__dirname, 'src'),
+    context: resolve(__dirname, 'resources/ut-header/src'),
     entry: [
-        './scripts/main.js'
+        './index.js'
         // the entry point of our app
     ],
     output: {
-        filename: 'main.js',
+        filename: 'header.js',
     },
     devtool: 'source-map',
     module: {
@@ -21,6 +21,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                         use: [
                             {

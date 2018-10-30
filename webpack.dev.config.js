@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    context: resolve(__dirname, 'src'),
+    context: resolve(__dirname, 'resources/ut-header/src'),
     entry: [
         'react-hot-loader/patch',
         // activate HMR for React
@@ -16,11 +16,11 @@ module.exports = {
         // bundle the client for hot reloading
         // only- means to only hot reload for successful updates
 
-        './scripts/main.js'
+        './index.js'
         // the entry point of our app
     ],
     output: {
-        filename: 'main.js',
+        filename: 'header.js',
         path: resolve(__dirname, 'dist'),
         publicPath: '/'
         // necessary for HMR to know where to load the hot update chunks
@@ -45,6 +45,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                         use: [
                             {
